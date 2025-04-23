@@ -1,84 +1,137 @@
-# Personal AI Assistant
+<div align="center">
 
-A transparent AI assistant that learns from user activities and can automate tasks on behalf of the user.
+# 🌟 Lumina: Your Personal AI Assistant 🌟
 
-## Features
+[![MIT License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![Build Status](https://img.shields.io/github/workflow/status/paril-01/Lumina/CI)](https://github.com/paril-01/Lumina/actions)
+[![Open Issues](https://img.shields.io/github/issues/paril-01/Lumina)](https://github.com/paril-01/Lumina/issues)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/paril-01/Lumina/pulls)
 
-- **Activity Monitoring**: Captures and analyzes user interactions across applications
-- **Behavior Modeling**: Creates a digital profile of the user's behavior patterns using RNN/Transformer models
-- **Task Automation**: Executes tasks based on learned patterns with prebuilt recipes and a no-code builder
-- **Communication Clone**: Communicates on behalf of the user in their style via fine-tuned NLP models
-- **Privacy Controls**: Transparent data handling with granular user control through a privacy dashboard
+**Lumina is a privacy-first AI assistant that learns from your activities, automates your digital life, and communicates in your unique style—all while keeping you in control.**
 
-## Architecture
+</div>
 
-### Frontend
-- React.js with Material-UI components
-- Component-driven UI architecture
-- Continuous deployment via Netlify
+---
 
-### Backend
-- FastAPI (Python) for async task handling and REST endpoints
-- Microservices architecture for scalability
-- Containerized via Docker and deployed to Heroku
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/yourusername/lumina-arch-diagram.png" alt="Lumina Architecture" width="700"/>
+</p>
 
-### ML/AI Layer
-- Behavior modeling using TensorFlow/PyTorch
-- Sequence modeling (RNN/Transformer) for pattern recognition
-- Event-driven pipelines with Redis queues
+---
 
-### Data Storage
-- SQLite (development), PostgreSQL (production)
-- Data Lake architecture for raw activity logs
-- Feature Store for cleaned training features
+## ✨ Features
 
-## Quick Start
+- 🖥️ **Activity Monitoring** — Understands your app usage and digital habits
+- 🧠 **Behavior Modeling** — Learns your patterns with advanced ML models (RNN/Transformer)
+- 🤖 **Task Automation** — Automates repetitive actions with a no-code builder and recipe engine
+- 💬 **Communication Clone** — Writes emails/messages in your personal style
+- 🔒 **Privacy Dashboard** — You control what data is collected, stored, or deleted
+- ⚡ **Real-Time** — WebSocket-powered live updates and notifications
+- 🌐 **Multi-Provider LLM** — Integrates with OpenAI, Anthropic, HuggingFace, Cohere, or your own models
+
+---
+
+## 🏗️ Architecture Overview
+
+- **Frontend:** React + Material-UI, glassmorphism, dark mode, fully responsive
+- **Backend:** FastAPI (Python), modular microservices, async processing
+- **ML Layer:** TensorFlow/PyTorch, local and external LLM support
+- **Data:** SQLite (dev), PostgreSQL (prod), Data Lake & Feature Store
+- **Real-Time:** WebSocket API for instant chat and notifications
+
+---
+
+## 🚀 Quick Start
 
 ```bash
-# Clone the repository
-git clone https://github.com/yourusername/ai-assistant.git
-cd ai-assistant
+# 1. Clone the repo
+git clone https://github.com/paril-01/Lumina.git
+cd Lumina
 
-# Backend setup
+# 2. Backend setup
 python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+source venv/bin/activate  # Windows: venv\Scripts\activate
 pip install -r requirements.txt
 cd backend
 uvicorn main:app --reload
 
-# Frontend setup (in a new terminal)
+# 3. Frontend setup (new terminal)
 cd frontend
 npm install
 npm start
 ```
 
-## Deployment
+---
 
-### Frontend (Netlify)
+## 🌍 Deployment Guide
+
+### Frontend (Vercel/Netlify)
 ```bash
 cd frontend
 npm run build
-# Deploy using Netlify CLI or GitHub integration
+# Deploy using Vercel/Netlify or GitHub integration
 ```
 
-### Backend (Heroku)
+### Backend (Render/Heroku/Azure)
 ```bash
-# Add Procfile for Heroku in project root
-# web: cd backend && uvicorn main:app --host=0.0.0.0 --port=${PORT:-8000}
-
-# Deploy using Heroku CLI
-heroku create your-ai-assistant
-git push heroku main
+cd backend
+# Add Procfile if using Heroku: web: uvicorn main:app --host=0.0.0.0 --port=${PORT:-8000}
+# Deploy using your preferred cloud platform
 ```
 
-## Development Status
+- **Set environment variables:** `OPENAI_API_KEY`, `DATABASE_URL`, etc. in your cloud dashboard.
 
-Currently in prototype phase with the following components implemented:
-- Core activity monitoring services
-- Basic behavior modeling with sequence prediction
-- Task automation framework with event triggers
-- Privacy controls and user settings
-- Frontend dashboard for visualizing assistant learning
+---
+
+## 🎨 Screenshots
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/yourusername/lumina-dashboard.png" width="700" alt="Dashboard"/>
+</p>
+
+---
+
+## 🛡️ Privacy & Security
+- All data processing is local by default; no data leaves your machine unless you allow it.
+- Granular privacy controls: toggle monitoring, data retention, anonymization, and more.
+- Open-source code—review, audit, or contribute!
+
+---
+
+## 🤔 FAQ
+
+**Q: Can I use my own LLM or connect OpenAI, HuggingFace, etc.?**
+> Yes! Just add your API key(s) in your `.env` or cloud dashboard. Lumina supports multiple providers and local models.
+
+**Q: Is my data safe?**
+> Absolutely. By default, all processing is local. You decide what is shared or stored.
+
+**Q: Can I contribute?**
+> PRs are welcome! Check the [contributing guidelines](CONTRIBUTING.md) or open an issue.
+
+---
+
+## 🧑‍💻 Contributing
+
+1. Fork the repo & clone locally
+2. Create a new branch (`git checkout -b feature/your-feature`)
+3. Commit your changes and push (`git push origin feature/your-feature`)
+4. Open a Pull Request 🚀
+
+---
+
+## 📢 Call to Action
+
+**Ready to supercharge your productivity with AI?**
+- ⭐ Star this repo
+- 📝 Try it locally or deploy to the cloud
+- 🗣️ Share your feedback and ideas
+
+---
+
+<div align="center">
+  <strong>Made with ❤️ by <a href="https://github.com/paril-01">Paril Rupani</a> and open-source contributors.</strong>
+</div>
 
 ## Future Development
 - Enhanced communication cloning with style transfer
