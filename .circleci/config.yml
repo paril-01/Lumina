@@ -1,0 +1,87 @@
+version: 2.1
+
+orbs:
+  node: circleci/node@5.0.2
+  python: circleci/python@2.0.3
+  heroku: circleci/heroku@1.2.6
+
+jobs:
+  test-backend:
+    docker:
+      - image: cimg/python:3.10
+    steps:
+      - checkout
+      - python/install-packages:
+          pkg-manager: pip
+          packages:
+            - -r requirements.txt
+      - run:
+          name: Run tests
+          command: |
+            cd backend
+            pytest -xvs
+
+  test-frontend:
+    docker:
+      - image: cimg/node:16.14
+    steps:
+      - checkout
+      - node/install-packages:
+          pkg-manager: npm
+          app-dir: frontend
+      - run:
+          name: Run tests
+          command: |
+            cd frontend
+            npm test -- --watchAll=false
+
+  deploy-backend:
+    docker:
+      - image: cimg/python:3.10
+    steps:
+      - checkout
+      - heroku/install
+      - run:
+          name: Deploy to Heroku
+          command: |
+            heroku container:login
+            heroku container:push web -a ${HEROKU_APP_NAME}
+            heroku container:release web -a ${HEROKU_APP_NAME}
+
+  deploy-frontend:
+    docker:
+      - image: cimg/node:16.14
+    steps:
+      - checkout
+      - node/install-packages:
+          pkg-manager: npm
+          app-dir: frontend
+      - run:
+          name: Build
+          command: |
+            cd frontend
+            npm run build
+      - run:
+          name: Deploy to Netlify
+          command: |
+            npm install -g netlify-cli
+            netlify deploy --dir=frontend/build --prod --auth $NETLIFY_AUTH_TOKEN --site $NETLIFY_SITE_ID
+
+workflows:
+  version: 2
+  build-test-deploy:
+    jobs:
+      - test-backend
+      - test-frontend
+      - deploy-backend:
+          requires:
+            - test-backend
+          filters:
+            branches:
+              only: main
+      - deploy-frontend:
+          requires:
+            - test-frontend
+          filters:
+            branches:
+              only: main
